@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './TrackPage.css'
+import BASE_URL from '../api'
 
 const STAGE_ICONS = {
   'Order placed': '📋',
@@ -26,7 +27,7 @@ export default function TrackPage() {
     setError('')
     setParcel(null)
     try {
-      const { data } = await axios.get(`/api/track/${input.trim()}`)
+     const { data } = await axios.get(`${BASE_URL}/api/track/${input.trim()}`)
       setParcel(data)
       setTimeout(() => {
         document.getElementById('result-anchor')?.scrollIntoView({ behavior: 'smooth' })

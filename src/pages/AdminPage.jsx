@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './AdminPage.css'
+import BASE_URL from '../api'
 
 const ADMIN_SECRET = 'moversbit2026'
 const ADMIN_PASSWORD = 'moversbit2026'
@@ -38,7 +39,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false)
 
   const fetchParcels = async () => {
-    const { data } = await axios.get('/api/admin/parcels', {
+    const { data } = await axios.get(`${BASE_URL}/api/admin/parcels`, {
       headers: { 'x-admin-secret': ADMIN_SECRET }
     })
     setParcels(data)
@@ -63,7 +64,7 @@ export default function AdminPage() {
     setFormSuccess('')
     setLoading(true)
     try {
-      await axios.post('/api/admin/parcels', form, {
+      await axios.post(`${BASE_URL}/api/admin/parcels`, form, {
         headers: { 'x-admin-secret': ADMIN_SECRET }
       })
       setFormSuccess(`Parcel ${form.trackingNumber} created successfully!`)
@@ -78,7 +79,7 @@ export default function AdminPage() {
 
   const handleNext = async (parcel) => {
     try {
-      await axios.patch(`/api/admin/parcels/${parcel._id}/next`, {
+      await axios.patch(`${BASE_URL}/api/admin/parcels/${parcel._id}/next`, {
         note: noteMap[parcel._id] || '',
       }, { headers: { 'x-admin-secret': ADMIN_SECRET } })
       setNoteMap((prev) => ({ ...prev, [parcel._id]: '' }))
@@ -92,11 +93,11 @@ export default function AdminPage() {
     if (!parcel.paused) {
       const reason = prompt('Enter reason for pausing this parcel:')
       if (reason === null) return
-      await axios.patch(`/api/admin/parcels/${parcel._id}/pause`, { reason }, {
+      await axios.patch(`${BASE_URL}/api/admin/parcels/${parcel._id}/pause`, { reason }, {
         headers: { 'x-admin-secret': ADMIN_SECRET }
       })
     } else {
-      await axios.patch(`/api/admin/parcels/${parcel._id}/pause`, {}, {
+      await axios.patch(`${BASE_URL}/api/admin/parcels/${parcel._id}/pause`, {}, {
         headers: { 'x-admin-secret': ADMIN_SECRET }
       })
     }
@@ -105,7 +106,7 @@ export default function AdminPage() {
 
   const handleDelete = async (id) => {
     if (!confirm('Delete this parcel?')) return
-    await axios.delete(`/api/admin/parcels/${id}`, {
+    await axios.delete(`${BASE_URL}/api/admin/parcels/${id}`, {
       headers: { 'x-admin-secret': ADMIN_SECRET }
     })
     fetchParcels()
