@@ -234,3 +234,43 @@
 @media (max-width: 480px) {
   .about-right { grid-template-columns: 1fr !important; }
 }
+
+
+
+/* SERVICE CARD IMAGES */
+.service-card { padding: 0; overflow: hidden; }
+.service-card-img {
+  width: 100%; height: 180px; object-fit: cover; display: block;
+}
+.service-card-body { padding: 1.25rem; }
+
+/* HAMBURGER */
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: #fff; border-radius: 2px; transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none; position: absolute; top: 68px; left: 0; right: 0;
+    background: #0b1221; flex-direction: column; gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08); z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a {
+    padding: 1rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 1rem;
+  }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service-card-img { height: 140px; }
+}
+
+@media (max-width: 480px) {
+  .services-grid { grid-template-columns: 1fr; }
+}

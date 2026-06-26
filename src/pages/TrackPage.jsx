@@ -53,23 +53,30 @@ export default function TrackPage() {
     return <span className="status-pill active">🚚 In Transit</span>
   }
 
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <div className="track-page">
 
       {/* NAVBAR */}
-      <nav className="navbar">
-        <div className="navbar-inner">
-          <Link to="/" className="nav-logo">
-            <span className="nav-logo-text">Movers<span>_Bit</span></span>
-          </Link>
-          <div className="nav-links">
-            <Link to="/about">About</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/contact">Contact</Link>
-          </div>
-          <a href="#track" className="nav-track-btn">Track Order</a>
-        </div>
-      </nav>
+     <nav className="navbar">
+  <div className="navbar-inner">
+    <Link to="/" className="nav-logo">
+      <span className="nav-logo-text">Movers<span>_Bit</span></span>
+    </Link>
+    <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
+      <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+      <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
+      <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+    </div>
+    <div className="nav-right">
+      <a href="#track" className="nav-track-btn">Track Order</a>
+      <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
       {/* HERO */}
       <section className="hero" id="track">
@@ -335,13 +342,49 @@ export default function TrackPage() {
             <h2 className="section-title">Our Services</h2>
           </div>
           <div className="services-grid">
-            <div className="service-card"><div className="service-icon">🚚</div><p className="service-title">Standard Delivery</p><p className="service-desc">Affordable and reliable delivery worldwide. Perfect for non-urgent shipments with full tracking included.</p></div>
-            <div className="service-card"><div className="service-icon">⚡</div><p className="service-title">Express Delivery</p><p className="service-desc">Need it fast? Our express service guarantees same-day or next-day delivery to major cities.</p></div>
-            <div className="service-card"><div className="service-icon">🏢</div><p className="service-title">Business Logistics</p><p className="service-desc">Tailored logistics solutions for businesses. Bulk shipping, scheduled pickups, and dedicated account management.</p></div>
-            <div className="service-card"><div className="service-icon">🌍</div><p className="service-title">International Shipping</p><p className="service-desc">Send parcels worldwide with full customs support and end-to-end tracking across borders.</p></div>
-            <div className="service-card"><div className="service-icon">❄️</div><p className="service-title">Fragile & Special Care</p><p className="service-desc">Extra care handling for fragile, perishable, or high-value items with specialized packaging.</p></div>
-            <div className="service-card"><div className="service-icon">📦</div><p className="service-title">Warehousing</p><p className="service-desc">Short and long-term storage solutions at our secure hubs across New York, London, and Dubai.</p></div>
-          </div>
+  <div className="service-card">
+    <img className="service-card-img" src="https://thumbs.dreamstime.com/b/chain-supply-two-workers-storehouse-19538379.jpg?w=768" alt="Standard Delivery" />
+    <div className="service-card-body">
+      <p className="service-title">Standard Delivery</p>
+      <p className="service-desc">Affordable and reliable delivery worldwide. Perfect for non-urgent shipments with full tracking included.</p>
+    </div>
+  </div>
+  <div className="service-card">
+    <img className="service-card-img" src="https://thumbs.dreamstime.com/b/container-warehouse-delivery-shipment-transport-import-export-to-global-logistics-concept-boat-plane-business-coherence-131565266.jpg?w=992" alt="Express Delivery" />
+    <div className="service-card-body">
+      <p className="service-title">Express Delivery</p>
+      <p className="service-desc">Need it fast? Our express service guarantees same-day or next-day delivery to major cities.</p>
+    </div>
+  </div>
+  <div className="service-card">
+    <img className="service-card-img" src="https://thumbs.dreamstime.com/b/global-business-logistics-import-export-background-container-cargo-freight-ship-transport-concept-137520514.jpg?w=992" alt="Business Logistics" />
+    <div className="service-card-body">
+      <p className="service-title">Business Logistics</p>
+      <p className="service-desc">Tailored logistics solutions for businesses. Bulk shipping, scheduled pickups, and dedicated account management.</p>
+    </div>
+  </div>
+  <div className="service-card">
+    <img className="service-card-img" src="https://thumbs.dreamstime.com/z/global-ecology-international-meeting-unity-learning-concep-concept-47450096.jpg?ct=jpeg" alt="International Shipping" />
+    <div className="service-card-body">
+      <p className="service-title">International Shipping</p>
+      <p className="service-desc">Send parcels worldwide with full customs support and end-to-end tracking across borders.</p>
+    </div>
+  </div>
+  <div className="service-card">
+    <img className="service-card-img" src="https://thumbs.dreamstime.com/b/container-warehouse-delivery-shipment-transport-import-export-to-global-logistics-concept-boat-plane-business-coherence-131565266.jpg?w=992" alt="Fragile & Special Care" />
+    <div className="service-card-body">
+      <p className="service-title">Fragile & Special Care</p>
+      <p className="service-desc">Extra care handling for fragile, perishable, or high-value items with specialized packaging.</p>
+    </div>
+  </div>
+  <div className="service-card">
+    <img className="service-card-img" src="https://thumbs.dreamstime.com/b/chang-minsheng-logistics-storage-center-12177287.jpg?w=992" alt="Warehousing" />
+    <div className="service-card-body">
+      <p className="service-title">Warehousing</p>
+      <p className="service-desc">Short and long-term storage solutions at our secure hubs across New York, London, and Dubai.</p>
+    </div>
+  </div>
+</div>
         </div>
       </section>
 
