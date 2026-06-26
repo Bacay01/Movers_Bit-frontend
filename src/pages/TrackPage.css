@@ -25,7 +25,9 @@
 .nav-track-btn:hover { background: #e05e00; }
 
 .hero {
-  background: #0b1221; padding: 8rem 2rem 5rem;
+  background: linear-gradient(rgba(11,18,33,0.85), rgba(11,18,33,0.85)),
+    url('https://thumbs.dreamstime.com/b/business-logistics-cargo-transportation-storage-equipm-equipment-containers-shipping-traffic-road-yellow-line-73168899.jpg?w=992') center/cover no-repeat;
+  padding: 8rem 2rem 5rem;
   min-height: 100vh; display: flex; align-items: center;
 }
 .hero-inner {
@@ -208,4 +210,27 @@
   .details-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+
+.about-card-img {
+  width: 100%; height: 160px; object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+  display: block;
+}
+.about-card-body { padding: 1rem; }
+.about-card {
+  background: #0b1221; border-radius: var(--radius-lg);
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.about-card-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.about-card-desc { font-size: 0.82rem; color: #94a3b8; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .about-right { grid-template-columns: 1fr 1fr !important; gap: 0.75rem; }
+  .about-card-img { height: 120px; }
+}
+
+@media (max-width: 480px) {
+  .about-right { grid-template-columns: 1fr !important; }
 }

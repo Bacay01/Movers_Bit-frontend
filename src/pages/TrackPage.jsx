@@ -295,10 +295,34 @@ export default function TrackPage() {
             </div>
           </div>
           <div className="about-right">
-            <div className="about-card"><div className="about-card-icon">🚚</div><p className="about-card-title">Road Freight</p><p className="about-card-desc">Fast and reliable road delivery across all major cities worldwide.</p></div>
-            <div className="about-card"><div className="about-card-icon">✈️</div><p className="about-card-title">Air Freight</p><p className="about-card-desc">Express air delivery for urgent and high-value shipments.</p></div>
-            <div className="about-card"><div className="about-card-icon">🏭</div><p className="about-card-title">Warehousing</p><p className="about-card-desc">Secure storage facilities at all major hubs worldwide.</p></div>
-            <div className="about-card"><div className="about-card-icon">📦</div><p className="about-card-title">Last Mile</p><p className="about-card-desc">Doorstep delivery to any address anywhere in the world.</p></div>
+            <div className="about-card">
+  <img className="about-card-img" src="https://thumbs.dreamstime.com/b/container-truck-ship-port-freight-cargo-plane-transpo-transport-import-export-commercial-logistic-shipping-business-61432246.jpg?w=992" alt="Road Freight" />
+  <div className="about-card-body">
+    <p className="about-card-title">Road Freight</p>
+    <p className="about-card-desc">Fast and reliable road delivery across all major cities worldwide.</p>
+  </div>
+</div>
+<div className="about-card">
+  <img className="about-card-img" src="https://thumbs.dreamstime.com/b/passenger-jet-plane-flying-airport-runway-use-traveling-cargo-freight-industry-topic-44887664.jpg?w=992" alt="Air Freight" />
+  <div className="about-card-body">
+    <p className="about-card-title">Air Freight</p>
+    <p className="about-card-desc">Express air delivery for urgent and high-value shipments.</p>
+  </div>
+</div>
+<div className="about-card">
+  <img className="about-card-img" src="https://thumbs.dreamstime.com/b/chang-minsheng-logistics-storage-center-12177287.jpg?w=992" alt="Warehousing" />
+  <div className="about-card-body">
+    <p className="about-card-title">Warehousing</p>
+    <p className="about-card-desc">Secure storage facilities at all major hubs worldwide.</p>
+  </div>
+</div>
+<div className="about-card">
+  <img className="about-card-img" src="https://thumbs.dreamstime.com/b/boxes-online-shopping-delivered-outside-door-could-be-stolen-add-your-own-copy-to-labels-154437283.jpg?w=768" alt="Last Mile" />
+  <div className="about-card-body">
+    <p className="about-card-title">Last Mile</p>
+    <p className="about-card-desc">Doorstep delivery to any address anywhere in the world.</p>
+  </div>
+</div>
           </div>
         </div>
       </section>
