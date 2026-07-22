@@ -36,6 +36,8 @@ export default function AdminPage() {
   const [formError, setFormError] = useState('')
   const [formSuccess, setFormSuccess] = useState('')
   const [noteMap, setNoteMap] = useState({})
+const [locationMap, setLocationMap] = useState({})
+const [timestampMap, setTimestampMap] = useState({})
   const [loading, setLoading] = useState(false)
 
   const fetchParcels = async () => {
@@ -78,16 +80,23 @@ export default function AdminPage() {
   }
 
   const handleNext = async (parcel) => {
-    try {
-      await axios.patch(`${BASE_URL}/api/admin/parcels/${parcel._id}/next`, {
-        note: noteMap[parcel._id] || '',
-      }, { headers: { 'x-admin-secret': ADMIN_SECRET } })
-      setNoteMap((prev) => ({ ...prev, [parcel._id]: '' }))
-      fetchParcels()
-    } catch (err) {
-      alert(err.response?.data?.message || 'Error advancing stage.')
-    }
+  try {
+    const timestamp = timestampMap[parcel._id] || new Date().toISOString()
+    const location = locationMap[parcel._id] || parcel.destination
+    const note = noteMap[parcel._id] || ''
+
+    await axios.patch(`${BASE_URL}/api/admin/parcels/${parcel._id}/next`, {
+      note, location, timestamp
+    }, { headers: { 'x-admin-secret': ADMIN_SECRET } })
+
+    setNoteMap((prev) => ({ ...prev, [parcel._id]: '' }))
+    setLocationMap((prev) => ({ ...prev, [parcel._id]: '' }))
+    setTimestampMap((prev) => ({ ...prev, [parcel._id]: '' }))
+    fetchParcels()
+  } catch (err) {
+    alert(err.response?.data?.message || 'Error advancing stage.')
   }
+}
 
   const handlePause = async (parcel) => {
     if (!parcel.paused) {
@@ -340,15 +349,33 @@ export default function AdminPage() {
                   </div>
 
                   {!isDelivered && (
-                    <div className="advance-row">
-                      <input type="text" className="note-input"
-                        placeholder="Optional note e.g. Arrived New York hub"
-                        value={noteMap[p._id] || ''}
-                        onChange={(e) => setNoteMap((prev) => ({ ...prev, [p._id]: e.target.value }))} />
-                      <button className="btn-next" onClick={() => handleNext(p)} disabled={p.paused}>
-                        Push → {STAGES[p.currentStageIndex + 1]}
-                      </button>
-                    </div>
+                    <div className="advance-section">
+  <p className="advance-label">Push to next stage</p>
+  <div className="advance-row">
+    <div className="form-group">
+      <label>Location</label>
+      <input type="text" className="note-input"
+        placeholder="e.g. Paris"
+        value={locationMap[p._id] || ''}
+        onChange={(e) => setLocationMap((prev) => ({ ...prev, [p._id]: e.target.value }))} />
+    </div>
+    <div className="form-group">
+      <label>Date & Time</label>
+      <input type="datetime-local" className="note-input"
+        value={timestampMap[p._id] || ''}
+        onChange={(e) => setTimestampMap((prev) => ({ ...prev, [p._id]: e.target.value }))} />
+    </div>
+  </div>
+  <div className="advance-row">
+    <input type="text" className="note-input"
+      placeholder="Optional note e.g. Arrived at Paris hub"
+      value={noteMap[p._id] || ''}
+      onChange={(e) => setNoteMap((prev) => ({ ...prev, [p._id]: e.target.value }))} />
+    <button className="btn-next" onClick={() => handleNext(p)} disabled={p.paused}>
+      Push → {STAGES[p.currentStageIndex + 1]}
+    </button>
+  </div>
+</div>
                   )}
 
                   {isDelivered && <div className="delivered-tag">✅ Delivered</div>}

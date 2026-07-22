@@ -139,7 +139,7 @@
 .packages-table td { padding: 10px 8px; color: #0b1221; font-weight: 500; border-bottom: 1px solid #f1f5f9; }
 .packages-table tr:last-child td { border-bottom: none; }
 
-.timeline-section {}
+/* .timeline-section {} */
 .timeline-title { font-size: 0.82rem; font-weight: 700; color: #0b1221; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; }
 .timeline { position: relative; }
 .timeline::before { content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
